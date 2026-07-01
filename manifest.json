@@ -1,0 +1,78 @@
+{
+  "name": "Nimêj — Islamic Prayer App",
+  "short_name": "Nimêj",
+  "description": "Islamic prayer times, Qibla, 99 Names of Allah and Islamic calendar for Kurdish Muslims",
+  "start_url": "/nimej/",
+  "display": "standalone",
+  "background_color": "#0E4A41",
+  "theme_color": "#0E4A41",
+  "orientation": "portrait",
+  "lang": "ku",
+  "dir": "ltr",
+  "categories": ["lifestyle", "religion"],
+  "icons": [
+    {
+      "src": "icons/icon-72.png",
+      "sizes": "72x72",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icons/icon-96.png",
+      "sizes": "96x96",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icons/icon-128.png",
+      "sizes": "128x128",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icons/icon-144.png",
+      "sizes": "144x144",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icons/icon-152.png",
+      "sizes": "152x152",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icons/icon-384.png",
+      "sizes": "384x384",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [],
+  "shortcuts": [
+    {
+      "name": "Prayer Times",
+      "short_name": "Bøntider",
+      "url": "/nimej/",
+      "icons": [{ "src": "icons/icon-96.png", "sizes": "96x96" }]
+    },
+    {
+      "name": "Qibla",
+      "short_name": "Qibla",
+      "url": "/nimej/#compass",
+      "icons": [{ "src": "icons/icon-96.png", "sizes": "96x96" }]
+    }
+  ]
+}
