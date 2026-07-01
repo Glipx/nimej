@@ -1,4 +1,5 @@
 {
+  "id": "com.kixlabs.nimej",
   "name": "Nimêj — Islamic Prayer App",
   "short_name": "Nimêj",
   "description": "Islamic prayer times, Qibla, 99 Names of Allah and Islamic calendar for Kurdish Muslims",
@@ -10,6 +11,14 @@
   "lang": "ku",
   "dir": "ltr",
   "categories": ["lifestyle", "religion"],
+  "screenshots": [
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "label": "Nimêj prayer times home screen"
+    }
+  ],
   "icons": [
     {
       "src": "icons/icon-72.png",
@@ -60,11 +69,10 @@
       "purpose": "any maskable"
     }
   ],
-  "screenshots": [],
   "shortcuts": [
     {
       "name": "Prayer Times",
-      "short_name": "Bøntider",
+      "short_name": "Prayer",
       "url": "/nimej/",
       "icons": [{ "src": "icons/icon-96.png", "sizes": "96x96" }]
     },
