@@ -11,6 +11,7 @@
 <meta name="description" content="Islamic prayer times, Qibla compass and 99 Names of Allah for Kurdish Muslims">
 <link rel="manifest" href="manifest.json">
 <link rel="apple-touch-icon" href="icons/icon-192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="icons/favicon.ico">
 <title>Nimêj</title>
 <link href="https://fonts.googleapis.com/css2?family=Scheherazade+New:wght@400;700&family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
@@ -341,7 +342,7 @@ body{font-family:'Plus Jakarta Sans',sans-serif;display:flex;justify-content:cen
     </div>
     <div id="compassStatus" class="compass-status">📍 Static — tap below to use your phone's sensor</div>
     <button class="ob-btn" id="compassEnableBtn" onclick="enableLiveCompass()">🧭 Enable live compass</button>
-    <div class="qibla-card"><div class="qibla-deg" id="qiblaDeg">136.4°</div><div class="qibla-sub" id="qiblaLabel">Qibla from Copenhagen</div><div class="qibla-ka">الكعبة المشرفة · Makkah</div></div>
+    <div class="qibla-card"><div class="qibla-deg" id="qiblaDeg">136.4°</div><div class="qibla-sub" id="qiblaLabel">Qibla from Copenhagen</div><div class="qibla-ka" id="qiblaKa">الكعبة المشرفة · Makkah</div></div>
   </div></div>
 </div>
 
@@ -421,14 +422,14 @@ body{font-family:'Plus Jakarta Sans',sans-serif;display:flex;justify-content:cen
 
 <script>
 const LANGS=[
-  {id:"ar",display:"العربية",p:["الإمساك","الفجر","الظهر","العصر","المغرب","العشاء"],months:["يناير","فبراير","مارس","أبريل","مايو","يونيو","يوليو","أغسطس","سبتمبر","أكتوبر","نوفمبر","ديسمبر"],next:"الصلاة القادمة",inst:"المؤسسة",city:"المدينة",lang:"اللغة",notif:"الأذان",hols:"التقويم",names:"٩٩ اسم",comp:"القبلة",prayer:"الصلاة",appear:"المظهر",gen:"عام",dark:"الليلي",light:"النهاري",aboutApp:"حول نيمَيج",pSec:"الصلاة",namesSub:"أسماء الله الحسنى",qibla:"القبلة من",cityL:"المدينة",country:"الدولة",back:"رجوع",next_btn:"التالي",finish_btn:"🌙 ابدأ",ob1t:"اختر اللغة",ob2t:"اختر المدينة",ob2t_country:"اختر بلدك",ob2t_both:"اختر البلد والمدينة",ob3t:"اختر المؤسسة",ob3sub:"تؤثر فقط على وقت الفجر والعشاء.",manageCities:"إدارة المدن",addCity:"＋ أضف مدينة",azanAllLabel:"تفعيل كل الأذان",azanHint:"فعّل أو عطّل الأذان لكل صلاة.",azanHdrAll:"كل الصلوات",azanHdrEach:"لكل صلاة",rate:"تقييم",t24:"٢٤ ساعة",about:"حول",aboutTagline:"تطبيق إسلامي · KIX Labs",ab1t:"🌍 اللغات",ab2t:"🕌 المؤسسات",ab3t:"✨ المميزات",ab3txt:"• ٦ أوقات\n• ٩٩ اسم الله\n• القبلة\n• تقويم ٣ سنوات\n• عدة مدن\n• ٨ لغات",cityManageHint:"رتب مدنك.",duaLabel:"📿 دعاء",duaText:"اللهم تقبل منا",stepWord:"خطوة"},
-  {id:"da",display:"Dansk",p:["Imsak","Fajr","Dhuhr","Asr","Maghrib","Isha"],months:["Januar","Februar","Marts","April","Maj","Juni","Juli","August","September","Oktober","November","December"],next:"NÆSTE BØN",inst:"Institution",city:"By",lang:"Sprog",notif:"Azan",hols:"Helligdage",names:"99 Navne",comp:"Kompas",prayer:"Bøntider",appear:"Udseende",gen:"Generelt",dark:"Nat tilstand",light:"Dag tilstand",aboutApp:"Om Nimêj",pSec:"Bøn",namesSub:"Allahs 99 Skønne Navne",qibla:"Qibla fra",cityL:"By",country:"Land",back:"Tilbage",next_btn:"Næste",finish_btn:"🌙 Kom i gang",ob1t:"Vælg sprog",ob2t:"Vælg by",ob2t_country:"Vælg dit land",ob2t_both:"Vælg land og by",ob3t:"Vælg institution",ob3sub:"Påvirker kun Fajr og Isha tiderne.",manageCities:"Administrer byer",addCity:"＋ Tilføj by",azanAllLabel:"Slå alle azaner til",azanHint:"Slå azanen til/fra for hver bøn individuelt.",azanHdrAll:"Alle bønner",azanHdrEach:"Pr. bøn",rate:"Bedøm appen",t24:"24t format",about:"Om",aboutTagline:"Islamisk bøn-app · KIX Labs",ab1t:"🌍 Sprog",ab2t:"🕌 Institutioner",ab3t:"✨ Funktioner",ab3txt:"• 6 bøntider\n• Allahs 99 Navne\n• Qibla-kompas\n• 3-årig kalender\n• Flere byer\n• Per-bøn azan\n• 8 sprog",cityManageHint:"Omarranger dine gemte byer.",duaLabel:"📿 Dua",duaText:"Åh Allah, accepter fra os",stepWord:"Trin"},
-  {id:"en",display:"English",p:["Imsak","Fajr","Dhuhr","Asr","Maghrib","Isha"],months:["January","February","March","April","May","June","July","August","September","October","November","December"],next:"NEXT PRAYER",inst:"Institution",city:"City",lang:"Language",notif:"Adhan",hols:"Calendar",names:"99 Names",comp:"Qibla",prayer:"Prayer",appear:"Appearance",gen:"General",dark:"Night mode",light:"Day mode",aboutApp:"About Nimêj",pSec:"Prayer",namesSub:"Allah's 99 Beautiful Names",qibla:"Qibla from",cityL:"City",country:"Country",back:"Back",next_btn:"Next",finish_btn:"🌙 Start praying",ob1t:"Choose your language",ob2t:"Choose your city",ob2t_country:"Choose your country",ob2t_both:"Choose country & city",ob3t:"Choose institution",ob3sub:"Affects Fajr and Isha times only.",manageCities:"Manage cities",addCity:"＋ Add city",azanAllLabel:"Enable all adhans",azanHint:"Toggle adhan for each prayer individually.",azanHdrAll:"All prayers",azanHdrEach:"Per prayer",rate:"Rate the app",t24:"24h format",about:"About",aboutTagline:"Islamic prayer app · KIX Labs",ab1t:"🌍 Languages",ab2t:"🕌 Institutions",ab3t:"✨ Features",ab3txt:"• 6 daily prayer times\n• 99 Names of Allah\n• Qibla compass\n• 3-year calendar\n• Multiple cities\n• Per-prayer adhan\n• 8 languages",cityManageHint:"Reorder your saved cities.",duaLabel:"📿 Dua",duaText:"O Allah, accept from us",stepWord:"Step"},
-  {id:"kmr",display:"Kurdî (Kurmancî)",p:["Berbang","Sibê","Nîvro","Berêvar","Êvar","Xiftan"],months:["Rêbandan","Reşemî","Adar","Avrêl","Gulan","Pûşper","Tîrmeh","Tebax","Îlon","Cotmeh","Mijdar","Berfanbar"],next:"NIMÊJA BÊ",inst:"Dezgeh",city:"Bajar",lang:"Ziman",notif:"Azan",hols:"Salveger",names:"99 Nav",comp:"Qible",prayer:"Nimêj",appear:"Xuyang",gen:"Giştî",dark:"Şeva tarî",light:"Ronahî",aboutApp:"Der barê Nimêjê",pSec:"Nimêj",namesSub:"99 Navên Xwedê yên Bedew",qibla:"Qibleyê ji",cityL:"Bajar",country:"Welat",back:"Paş",next_btn:"Pêş",finish_btn:"🌙 Dest bi Nimêjê bike",ob1t:"Ziman hilbijêre",ob2t:"Bajar hilbijêre",ob2t_country:"Welatê xwe hilbijêre",ob2t_both:"Welat û Bajar hilbijêre",ob3t:"Dezgeh hilbijêre",ob3sub:"Tenê tesîrê li Berbang û Xiftanê dike.",manageCities:"Bajaran birêxistin",addCity:"＋ Bajar zêde bike",azanAllLabel:"Hemû azan çalak bike",azanHint:"Ji bo her nimêjê azanê kontrol bike.",azanHdrAll:"Hemû nimêj",azanHdrEach:"Her nimêj",rate:"Nirxandina app",t24:"Saet (24s)",about:"Der barê",aboutTagline:"Bernameyeka Islamî · KIX Labs",ab1t:"🌍 Ziman",ab2t:"🕌 Dezgeh",ab3t:"✨ Taybetmendî",ab3txt:"• 6 dem rojane\n• 99 Navên Xwedê\n• Qibleyê\n• Salveger 3 sal\n• Çend bajar\n• 8 ziman",cityManageHint:"Bajarên xwe birêxistin bike.",duaLabel:"📿 Dua",duaText:"Ya Xwedê, ji me qebûl bike",stepWord:"Gav"},
-  {id:"ckb",display:"کوردی (سۆرانی)",p:["ئیمساک","فەجر","نیوەڕۆ","عەسر","ئێوارە","عیشا"],months:["کانوونی دووەم","شوبات","ئازار","نیسان","ئایار","حوزەیران","تەممووز","ئاب","ئەیلوول","تشرینی یەکەم","تشرینی دووەم","کانوونی یەکەم"],next:"نوێژی داهاتوو",inst:"دەزگا",city:"شار",lang:"زمان",notif:"ئەزان",hols:"ساڵنامە",names:"٩٩ ناو",comp:"قیبلە",prayer:"نوێژ",appear:"دیمەن",gen:"گشتی",dark:"شەوی تاریک",light:"ڕۆژ",aboutApp:"دەربارەی نیمێژ",pSec:"نوێژ",namesSub:"٩٩ ناوی جوانی خودا",qibla:"قیبلە لە",cityL:"شار",country:"وڵات",back:"گەڕانەوە",next_btn:"پێشەوە",finish_btn:"🌙 دەستپێکردن",ob1t:"زمان هەڵبژێرە",ob2t:"شار هەڵبژێرە",ob2t_country:"وڵاتی خۆت هەڵبژێرە",ob2t_both:"وڵات و شار هەڵبژێرە",ob3t:"دامەزراوە هەڵبژێرە",ob3sub:"تەنها کاریگەری لەسەر فەجر و عیشا دەکات.",manageCities:"بەڕێوەبردنی شارەکان",addCity:"＋ شار زیاد بکە",azanAllLabel:"هەموو ئەزان چالاک بکە",azanHint:"بۆ هەر نوێژێک ئەزان کەم‌وزیاد بکە.",azanHdrAll:"هەموو نوێژەکان",azanHdrEach:"هەر نوێژێک",rate:"هەڵسەنگاندن",t24:"کات (٢٤)",about:"دەربارە",aboutTagline:"ئەپی ئیسلامی · KIX Labs",ab1t:"🌍 زمان",ab2t:"🕌 دامەزراوە",ab3t:"✨ تایبەتمەندییەکان",ab3txt:"• ٦ کات\n• ٩٩ ناوی خودا\n• قیبلە\n• ساڵنامە ٣ ساڵ\n• چەند شار\n• ٨ زمان",cityManageHint:"شارەکانت ڕیزبکە.",duaLabel:"📿 دوعا",duaText:"ئەی خودایە، لە ئێمە وەربگرە",stepWord:"هەنگاو"},
-  {id:"zza",display:"Kurdî (Zazakî)",p:["İmsak","Fecrî","Nîmroj","Esrî","Êvar","Îşa"],months:["Çele","Şıbat","Adare","Nîsane","Gulane","Hezîrane","Temmuz","Tebaxe","Îlone","Coteme","Mijdare","Berfanbare"],next:"NAMACÊ TÊDE",inst:"Dezga",city:"Şar",lang:"Zıwan",notif:"Azan",hols:"Serrname",names:"99 Nam",comp:"Qible",prayer:"Namac",appear:"Xuyê",gen:"Giştî",dark:"Şew tarî",light:"Roj",aboutApp:"Behsa Nimêcî",pSec:"Namac",namesSub:"99 Namê Homayî",qibla:"Qibleyê ra",cityL:"Şar",country:"Welat",back:"Peyser",next_btn:"Pêşî",finish_btn:"🌙 Dest bike",ob1t:"Zıwan bıvıcne",ob2t:"Şar bıvıcne",ob2t_country:"Welatê xo bıvıcne",ob2t_both:"Welat u Şar bıvıcne",ob3t:"Dezga bıvıcne",ob3sub:"Tenê Fecrî û Îşa ser tesîr keno.",manageCities:"Şaran birêxistin",addCity:"＋ Şar zêde bike",azanAllLabel:"Hemû azan vıraz",azanHint:"Her namac sera azan vıraz.",azanHdrAll:"Hemû namac",azanHdrEach:"Her namac",rate:"Nirxnayîş bıke",t24:"Saet (24)",about:"Behsa",aboutTagline:"Bernameyê Îslamî · KIX Labs",ab1t:"🌍 Zıwan",ab2t:"🕌 Dezga",ab3t:"✨ Xısusiyetî",ab3txt:"• 6 wext\n• 99 Namê Homayî\n• Qible\n• Serrname 3 serre\n• Çend şar\n• 8 zıwan",cityManageHint:"Şarê xo rêz bike.",duaLabel:"📿 Dua",duaText:"Ya Homa, ti ma ra qebul ke",stepWord:"Pêl"},
-  {id:"fa",display:"فارسی",p:["امساک","فجر","ظهر","عصر","مغرب","عشا"],months:["ژانویه","فوریه","مارس","آوریل","مه","ژوئن","ژوئیه","اوت","سپتامبر","اکتبر","نوامبر","دسامبر"],next:"نماز بعدی",inst:"مؤسسه",city:"شهر",lang:"زبان",notif:"اذان",hols:"تقویم",names:"۹۹ اسم",comp:"قبله",prayer:"نماز",appear:"ظاهر",gen:"عمومی",dark:"حالت شب",light:"حالت روز",aboutApp:"درباره نیمَیج",pSec:"نماز",namesSub:"۹۹ اسم زیبای خداوند",qibla:"قبله از",cityL:"شهر",country:"کشور",back:"بازگشت",next_btn:"بعدی",finish_btn:"🌙 شروع",ob1t:"زبان را انتخاب کنید",ob2t:"شهر را انتخاب کنید",ob2t_country:"کشور خود را انتخاب کنید",ob2t_both:"کشور و شهر را انتخاب کنید",ob3t:"مؤسسه را انتخاب کنید",ob3sub:"فقط بر فجر و عشا تأثیر می‌گذارد.",manageCities:"مدیریت شهرها",addCity:"＋ شهر اضافه کن",azanAllLabel:"همه اذان را فعال کن",azanHint:"برای هر نماز اذان را تنظیم کنید.",azanHdrAll:"همه نمازها",azanHdrEach:"برای هر نماز",rate:"امتیاز",t24:"۲۴ ساعت",about:"درباره",aboutTagline:"اپلیکیشن اسلامی · KIX Labs",ab1t:"🌍 زبان‌ها",ab2t:"🕌 مؤسسات",ab3t:"✨ ویژگی‌ها",ab3txt:"• ۶ وقت نماز\n• ۹۹ اسم خدا\n• قبله\n• تقویم ۳ ساله\n• چند شهر\n• ۸ زبان",cityManageHint:"شهرهایتان را مرتب کنید.",duaLabel:"📿 دعا",duaText:"خدایا، از ما بپذیر",stepWord:"مرحله"},
-  {id:"tr",display:"Türkçe",p:["İmsak","Sabah","Öğle","İkindi","Akşam","Yatsı"],months:["Ocak","Şubat","Mart","Nisan","Mayıs","Haziran","Temmuz","Ağustos","Eylül","Ekim","Kasım","Aralık"],next:"SONRAKI NAMAZ",inst:"Kurum",city:"Şehir",lang:"Dil",notif:"Ezan",hols:"Serrname",names:"99 İsim",comp:"Qible",prayer:"Namaz",appear:"Görünüm",gen:"Genel",dark:"Gece modu",light:"Gündüz",aboutApp:"Nimêj Hakkında",pSec:"Namaz",namesSub:"Allah'ın 99 Güzel İsmi",qibla:"Qibleyê ra",cityL:"Şehir",country:"Ülke",back:"Geri",next_btn:"İleri",finish_btn:"🌙 Başla",ob1t:"Dil seç",ob2t:"Şehir seç",ob2t_country:"Ülkenizi seçin",ob2t_both:"Ülke ve şehir seçin",ob3t:"Kurum seç",ob3sub:"Yalnızca İmsak ve Yatsı vakitlerini etkiler.",manageCities:"Şehirleri yönet",addCity:"＋ Şehir ekle",azanAllLabel:"Tüm ezanı etkinleştir",azanHint:"Her namaz için ezanı açın veya kapatın.",azanHdrAll:"Tüm namazlar",azanHdrEach:"Her namaz için",rate:"Değerlendir",t24:"24 saat",about:"Hakkında",aboutTagline:"İslami Uygulama · KIX Labs",ab1t:"🌍 Diller",ab2t:"🕌 Kurumlar",ab3t:"✨ Özellikler",ab3txt:"• 6 namaz vakti\n• 99 İsim\n• Kıble\n• 3 yıllık takvim\n• Birden fazla şehir\n• 8 dil",cityManageHint:"Şehirlerini sırala.",duaLabel:"📿 Dua",duaText:"Allah'ım, bizden kabul eyle",stepWord:"Adım"}
+  {id:"ar",display:"العربية",p:["الإمساك","الفجر","الظهر","العصر","المغرب","العشاء"],months:["يناير","فبراير","مارس","أبريل","مايو","يونيو","يوليو","أغسطس","سبتمبر","أكتوبر","نوفمبر","ديسمبر"],next:"الصلاة القادمة",inst:"المؤسسة",city:"المدينة",lang:"اللغة",notif:"الأذان",hols:"التقويم",names:"٩٩ اسم",comp:"القبلة",prayer:"الصلاة",appear:"المظهر",gen:"عام",dark:"الليلي",light:"النهاري",aboutApp:"حول نيمَيج",pSec:"الصلاة",namesSub:"أسماء الله الحسنى",qibla:"القبلة من",cityL:"المدينة",country:"الدولة",back:"رجوع",next_btn:"التالي",finish_btn:"🌙 ابدأ",ob1t:"اختر اللغة",ob2t:"اختر المدينة",ob2t_country:"اختر بلدك",ob2t_both:"اختر البلد والمدينة",ob3t:"اختر المؤسسة",ob3sub:"تؤثر فقط على وقت الفجر والعشاء.",manageCities:"إدارة المدن",addCity:"＋ أضف مدينة",azanAllLabel:"تفعيل كل الأذان",azanHint:"فعّل أو عطّل الأذان لكل صلاة.",azanHdrAll:"كل الصلوات",azanHdrEach:"لكل صلاة",rate:"تقييم",t24:"٢٤ ساعة",about:"حول",aboutTagline:"تطبيق إسلامي · KIX Labs",ab1t:"🌍 اللغات",ab2t:"🕌 المؤسسات",ab3t:"✨ المميزات",ab3txt:"• ٦ أوقات\n• ٩٩ اسم الله\n• القبلة\n• تقويم ٣ سنوات\n• عدة مدن\n• ٨ لغات",cityManageHint:"رتب مدنك.",duaLabel:"📿 دعاء",duaText:"اللهم تقبل منا",makkah:"الكعبة المشرفة · مكة المكرمة",stepWord:"خطوة"},
+  {id:"da",display:"Dansk",p:["Imsak","Fajr","Dhuhr","Asr","Maghrib","Isha"],months:["Januar","Februar","Marts","April","Maj","Juni","Juli","August","September","Oktober","November","December"],next:"NÆSTE BØN",inst:"Institution",city:"By",lang:"Sprog",notif:"Azan",hols:"Helligdage",names:"99 Navne",comp:"Kompas",prayer:"Bøntider",appear:"Udseende",gen:"Generelt",dark:"Nat tilstand",light:"Dag tilstand",aboutApp:"Om Nimêj",pSec:"Bøn",namesSub:"Allahs 99 Skønne Navne",qibla:"Qibla fra",cityL:"By",country:"Land",back:"Tilbage",next_btn:"Næste",finish_btn:"🌙 Kom i gang",ob1t:"Vælg sprog",ob2t:"Vælg by",ob2t_country:"Vælg dit land",ob2t_both:"Vælg land og by",ob3t:"Vælg institution",ob3sub:"Påvirker kun Fajr og Isha tiderne.",manageCities:"Administrer byer",addCity:"＋ Tilføj by",azanAllLabel:"Slå alle azaner til",azanHint:"Slå azanen til/fra for hver bøn individuelt.",azanHdrAll:"Alle bønner",azanHdrEach:"Pr. bøn",rate:"Bedøm appen",t24:"24t format",about:"Om",aboutTagline:"Islamisk bøn-app · KIX Labs",ab1t:"🌍 Sprog",ab2t:"🕌 Institutioner",ab3t:"✨ Funktioner",ab3txt:"• 6 bøntider\n• Allahs 99 Navne\n• Qibla-kompas\n• 3-årig kalender\n• Flere byer\n• Per-bøn azan\n• 8 sprog",cityManageHint:"Omarranger dine gemte byer.",duaLabel:"📿 Dua",duaText:"Åh Allah, accepter fra os",makkah:"الكعبة المشرفة · Mekka",stepWord:"Trin"},
+  {id:"en",display:"English",p:["Imsak","Fajr","Dhuhr","Asr","Maghrib","Isha"],months:["January","February","March","April","May","June","July","August","September","October","November","December"],next:"NEXT PRAYER",inst:"Institution",city:"City",lang:"Language",notif:"Adhan",hols:"Calendar",names:"99 Names",comp:"Qibla",prayer:"Prayer",appear:"Appearance",gen:"General",dark:"Night mode",light:"Day mode",aboutApp:"About Nimêj",pSec:"Prayer",namesSub:"Allah's 99 Beautiful Names",qibla:"Qibla from",cityL:"City",country:"Country",back:"Back",next_btn:"Next",finish_btn:"🌙 Start praying",ob1t:"Choose your language",ob2t:"Choose your city",ob2t_country:"Choose your country",ob2t_both:"Choose country & city",ob3t:"Choose institution",ob3sub:"Affects Fajr and Isha times only.",manageCities:"Manage cities",addCity:"＋ Add city",azanAllLabel:"Enable all adhans",azanHint:"Toggle adhan for each prayer individually.",azanHdrAll:"All prayers",azanHdrEach:"Per prayer",rate:"Rate the app",t24:"24h format",about:"About",aboutTagline:"Islamic prayer app · KIX Labs",ab1t:"🌍 Languages",ab2t:"🕌 Institutions",ab3t:"✨ Features",ab3txt:"• 6 daily prayer times\n• 99 Names of Allah\n• Qibla compass\n• 3-year calendar\n• Multiple cities\n• Per-prayer adhan\n• 8 languages",cityManageHint:"Reorder your saved cities.",duaLabel:"📿 Dua",duaText:"O Allah, accept from us",makkah:"الكعبة المشرفة · Makkah",stepWord:"Step"},
+  {id:"kmr",display:"Kurdî (Kurmancî)",p:["Berbang","Sibê","Nîvro","Berêvar","Êvar","Xiftan"],months:["Rêbandan","Reşemî","Adar","Avrêl","Gulan","Pûşper","Tîrmeh","Tebax","Îlon","Cotmeh","Mijdar","Berfanbar"],next:"NIMÊJA BÊ",inst:"Dezgeh",city:"Bajar",lang:"Ziman",notif:"Azan",hols:"Salveger",names:"99 Nav",comp:"Qible",prayer:"Nimêj",appear:"Xuyang",gen:"Giştî",dark:"Şeva tarî",light:"Ronahî",aboutApp:"Der barê Nimêjê",pSec:"Nimêj",namesSub:"99 Navên Xwedê yên Bedew",qibla:"Qibleyê ji",cityL:"Bajar",country:"Welat",back:"Paş",next_btn:"Pêş",finish_btn:"🌙 Dest bi Nimêjê bike",ob1t:"Ziman hilbijêre",ob2t:"Bajar hilbijêre",ob2t_country:"Welatê xwe hilbijêre",ob2t_both:"Welat û Bajar hilbijêre",ob3t:"Dezgeh hilbijêre",ob3sub:"Tenê tesîrê li Berbang û Xiftanê dike.",manageCities:"Bajaran birêxistin",addCity:"＋ Bajar zêde bike",azanAllLabel:"Hemû azan çalak bike",azanHint:"Ji bo her nimêjê azanê kontrol bike.",azanHdrAll:"Hemû nimêj",azanHdrEach:"Her nimêj",rate:"Nirxandina app",t24:"Saet (24s)",about:"Der barê",aboutTagline:"Bernameyeka Islamî · KIX Labs",ab1t:"🌍 Ziman",ab2t:"🕌 Dezgeh",ab3t:"✨ Taybetmendî",ab3txt:"• 6 dem rojane\n• 99 Navên Xwedê\n• Qibleyê\n• Salveger 3 sal\n• Çend bajar\n• 8 ziman",cityManageHint:"Bajarên xwe birêxistin bike.",duaLabel:"📿 Dua",duaText:"Ya Xwedê, ji me qebûl bike",makkah:"الكعبة المشرفة · Meke",stepWord:"Gav"},
+  {id:"ckb",display:"کوردی (سۆرانی)",p:["ئیمساک","فەجر","نیوەڕۆ","عەسر","ئێوارە","عیشا"],months:["کانوونی دووەم","شوبات","ئازار","نیسان","ئایار","حوزەیران","تەممووز","ئاب","ئەیلوول","تشرینی یەکەم","تشرینی دووەم","کانوونی یەکەم"],next:"نوێژی داهاتوو",inst:"دەزگا",city:"شار",lang:"زمان",notif:"ئەزان",hols:"ساڵنامە",names:"٩٩ ناو",comp:"قیبلە",prayer:"نوێژ",appear:"دیمەن",gen:"گشتی",dark:"شەوی تاریک",light:"ڕۆژ",aboutApp:"دەربارەی نیمێژ",pSec:"نوێژ",namesSub:"٩٩ ناوی جوانی خودا",qibla:"قیبلە لە",cityL:"شار",country:"وڵات",back:"گەڕانەوە",next_btn:"پێشەوە",finish_btn:"🌙 دەستپێکردن",ob1t:"زمان هەڵبژێرە",ob2t:"شار هەڵبژێرە",ob2t_country:"وڵاتی خۆت هەڵبژێرە",ob2t_both:"وڵات و شار هەڵبژێرە",ob3t:"دامەزراوە هەڵبژێرە",ob3sub:"تەنها کاریگەری لەسەر فەجر و عیشا دەکات.",manageCities:"بەڕێوەبردنی شارەکان",addCity:"＋ شار زیاد بکە",azanAllLabel:"هەموو ئەزان چالاک بکە",azanHint:"بۆ هەر نوێژێک ئەزان کەم‌وزیاد بکە.",azanHdrAll:"هەموو نوێژەکان",azanHdrEach:"هەر نوێژێک",rate:"هەڵسەنگاندن",t24:"کات (٢٤)",about:"دەربارە",aboutTagline:"ئەپی ئیسلامی · KIX Labs",ab1t:"🌍 زمان",ab2t:"🕌 دامەزراوە",ab3t:"✨ تایبەتمەندییەکان",ab3txt:"• ٦ کات\n• ٩٩ ناوی خودا\n• قیبلە\n• ساڵنامە ٣ ساڵ\n• چەند شار\n• ٨ زمان",cityManageHint:"شارەکانت ڕیزبکە.",duaLabel:"📿 دوعا",duaText:"ئەی خودایە، لە ئێمە وەربگرە",makkah:"الكعبة المشرفة · مەکە",stepWord:"هەنگاو"},
+  {id:"zza",display:"Kurdî (Zazakî)",p:["İmsak","Fecrî","Nîmroj","Esrî","Êvar","Îşa"],months:["Çele","Şıbat","Adare","Nîsane","Gulane","Hezîrane","Temmuz","Tebaxe","Îlone","Coteme","Mijdare","Berfanbare"],next:"NAMACÊ TÊDE",inst:"Dezga",city:"Şar",lang:"Zıwan",notif:"Azan",hols:"Serrname",names:"99 Nam",comp:"Qible",prayer:"Namac",appear:"Xuyê",gen:"Giştî",dark:"Şew tarî",light:"Roj",aboutApp:"Behsa Nimêcî",pSec:"Namac",namesSub:"99 Namê Homayî",qibla:"Qibleyê ra",cityL:"Şar",country:"Welat",back:"Peyser",next_btn:"Pêşî",finish_btn:"🌙 Dest bike",ob1t:"Zıwan bıvıcne",ob2t:"Şar bıvıcne",ob2t_country:"Welatê xo bıvıcne",ob2t_both:"Welat u Şar bıvıcne",ob3t:"Dezga bıvıcne",ob3sub:"Tenê Fecrî û Îşa ser tesîr keno.",manageCities:"Şaran birêxistin",addCity:"＋ Şar zêde bike",azanAllLabel:"Hemû azan vıraz",azanHint:"Her namac sera azan vıraz.",azanHdrAll:"Hemû namac",azanHdrEach:"Her namac",rate:"Nirxnayîş bıke",t24:"Saet (24)",about:"Behsa",aboutTagline:"Bernameyê Îslamî · KIX Labs",ab1t:"🌍 Zıwan",ab2t:"🕌 Dezga",ab3t:"✨ Xısusiyetî",ab3txt:"• 6 wext\n• 99 Namê Homayî\n• Qible\n• Serrname 3 serre\n• Çend şar\n• 8 zıwan",cityManageHint:"Şarê xo rêz bike.",duaLabel:"📿 Dua",duaText:"Ya Homa, ti ma ra qebul ke",makkah:"الكعبة المشرفة · Meke",stepWord:"Pêl"},
+  {id:"fa",display:"فارسی",p:["امساک","فجر","ظهر","عصر","مغرب","عشا"],months:["ژانویه","فوریه","مارس","آوریل","مه","ژوئن","ژوئیه","اوت","سپتامبر","اکتبر","نوامبر","دسامبر"],next:"نماز بعدی",inst:"مؤسسه",city:"شهر",lang:"زبان",notif:"اذان",hols:"تقویم",names:"۹۹ اسم",comp:"قبله",prayer:"نماز",appear:"ظاهر",gen:"عمومی",dark:"حالت شب",light:"حالت روز",aboutApp:"درباره نیمَیج",pSec:"نماز",namesSub:"۹۹ اسم زیبای خداوند",qibla:"قبله از",cityL:"شهر",country:"کشور",back:"بازگشت",next_btn:"بعدی",finish_btn:"🌙 شروع",ob1t:"زبان را انتخاب کنید",ob2t:"شهر را انتخاب کنید",ob2t_country:"کشور خود را انتخاب کنید",ob2t_both:"کشور و شهر را انتخاب کنید",ob3t:"مؤسسه را انتخاب کنید",ob3sub:"فقط بر فجر و عشا تأثیر می‌گذارد.",manageCities:"مدیریت شهرها",addCity:"＋ شهر اضافه کن",azanAllLabel:"همه اذان را فعال کن",azanHint:"برای هر نماز اذان را تنظیم کنید.",azanHdrAll:"همه نمازها",azanHdrEach:"برای هر نماز",rate:"امتیاز",t24:"۲۴ ساعت",about:"درباره",aboutTagline:"اپلیکیشن اسلامی · KIX Labs",ab1t:"🌍 زبان‌ها",ab2t:"🕌 مؤسسات",ab3t:"✨ ویژگی‌ها",ab3txt:"• ۶ وقت نماز\n• ۹۹ اسم خدا\n• قبله\n• تقویم ۳ ساله\n• چند شهر\n• ۸ زبان",cityManageHint:"شهرهایتان را مرتب کنید.",duaLabel:"📿 دعا",duaText:"خدایا، از ما بپذیر",makkah:"الكعبة المشرفة · مکه",stepWord:"مرحله"},
+  {id:"tr",display:"Türkçe",p:["İmsak","Sabah","Öğle","İkindi","Akşam","Yatsı"],months:["Ocak","Şubat","Mart","Nisan","Mayıs","Haziran","Temmuz","Ağustos","Eylül","Ekim","Kasım","Aralık"],next:"SONRAKI NAMAZ",inst:"Kurum",city:"Şehir",lang:"Dil",notif:"Ezan",hols:"Serrname",names:"99 İsim",comp:"Qible",prayer:"Namaz",appear:"Görünüm",gen:"Genel",dark:"Gece modu",light:"Gündüz",aboutApp:"Nimêj Hakkında",pSec:"Namaz",namesSub:"Allah'ın 99 Güzel İsmi",qibla:"Qibleyê ra",cityL:"Şehir",country:"Ülke",back:"Geri",next_btn:"İleri",finish_btn:"🌙 Başla",ob1t:"Dil seç",ob2t:"Şehir seç",ob2t_country:"Ülkenizi seçin",ob2t_both:"Ülke ve şehir seçin",ob3t:"Kurum seç",ob3sub:"Yalnızca İmsak ve Yatsı vakitlerini etkiler.",manageCities:"Şehirleri yönet",addCity:"＋ Şehir ekle",azanAllLabel:"Tüm ezanı etkinleştir",azanHint:"Her namaz için ezanı açın veya kapatın.",azanHdrAll:"Tüm namazlar",azanHdrEach:"Her namaz için",rate:"Değerlendir",t24:"24 saat",about:"Hakkında",aboutTagline:"İslami Uygulama · KIX Labs",ab1t:"🌍 Diller",ab2t:"🕌 Kurumlar",ab3t:"✨ Özellikler",ab3txt:"• 6 namaz vakti\n• 99 İsim\n• Kıble\n• 3 yıllık takvim\n• Birden fazla şehir\n• 8 dil",cityManageHint:"Şehirlerini sırala.",duaLabel:"📿 Dua",duaText:"Allah'ım, bizden kabul eyle",makkah:"الكعبة المشرفة · Mekke",stepWord:"Adım"}
 ];
 const INST_DESC={"diyanet":{kmr:"Tirkiye",ckb:"تورکیا",zza:"Tırkiya",ar:"تركيا",tr:"Türkiye",fa:"ترکیه",en:"Türkiye",da:"Tyrkiet"},"igmg":{kmr:"Ewropa",ckb:"ئەورووپا",zza:"Ewropa",ar:"أوروبا",tr:"Avrupa",fa:"اروپا",en:"Europe",da:"Europa"},"semerkand":{kmr:"Tirkiye/Ewropa",ckb:"تورکیا/ئەورووپا",zza:"Tırkiya/Ewropa",ar:"تركيا/أوروبا",tr:"Türkiye/Avrupa",fa:"ترکیه/اروپا",en:"Türkiye/Europe",da:"Tyrkiet/Europa"},"ditib":{kmr:"Almanya",ckb:"ئەڵمانیا",zza:"Almanya",ar:"ألمانيا",tr:"Almanya",fa:"آلمان",en:"Germany",da:"Tyskland"},"isna":{kmr:"Amerîkaya Bakur",ckb:"ئەمریکای باکوور",zza:"Amerikaya Vakur",ar:"أمريكا الشمالية",tr:"Kuzey Amerika",fa:"آمریکای شمالی",en:"N. America",da:"Nordamerika"},"mwl":{kmr:"Cîhanî",ckb:"جیهانی",zza:"Dınya",ar:"عالمي",tr:"Küresel",fa:"جهانی",en:"Global",da:"Global"},"karachi":{kmr:"Asyaya Başûr",ckb:"باشووری ئاسیا",zza:"Asyaya Verg",ar:"جنوب آسيا",tr:"Güney Asya",fa:"جنوب آسیا",en:"S. Asia",da:"Sydasien"},"fcna":{kmr:"Amerîkaya Bakur",ckb:"ئەمریکای باکوور",zza:"Amerikaya Vakur",ar:"أمريكا الشمالية",tr:"Kuzey Amerika",fa:"آمریکای شمالی",en:"N. America",da:"Nordamerika"},"uoif":{kmr:"Fransa",ckb:"فەرەنسا",zza:"Fransa",ar:"فرنسا",tr:"Fransa",fa:"فرانسه",en:"France",da:"Frankrig"},"egypt":{kmr:"Misir",ckb:"میسر",zza:"Mısır",ar:"مصر",tr:"Mısır",fa:"مصر",en:"Egypt",da:"Egypten"}};
 const INST_FULL={"ditib":{kmr:"Yekîtiya Tirk-Îslamî ya Karûbarên Olî",ckb:"یەکێتی تورکی-ئیسلامی بۆ کاروباری ئایینی",zza:"Yekîtiya Tırk-İslamî ya Karubarê Dînî",ar:"الاتحاد التركي الإسلامي لشؤون الديانة",tr:"Diyanet İşleri Türk-İslam Birliği",fa:"اتحادیه ترک-اسلامی امور دینی",en:"Turkish-Islamic Union for Religious Affairs",da:"Tyrkisk-islamisk union for religiøse anliggender"},"diyanet":{kmr:"Rêveberiya Karûbarên Olî ya Tirkiyeyê",ckb:"بەڕێوەبەرایەتی کاروباری ئایینی توركیا",zza:"Rîveberiya Karubarê Dînî ya Tırkiya",ar:"رئاسة الشؤون الدينية التركية",tr:"Diyanet İşleri Başkanlığı",fa:"ریاست امور دینی ترکیه",en:"Presidency of Religious Affairs (Turkey)",da:"Tyrkiets Direktorat for Religiøse Anliggender"},"egypt":{kmr:"Saziya Giştî ya Misrê ya Pîvanan",ckb:"دەزگای گشتی میسر بۆ پێوانە",zza:"Dezgeyê Gıştî yê Mısiri ê Pîvanan",ar:"الهيئة المصرية العامة للمساحة",tr:"Mısır Genel Ölçüm Otoritesi",fa:"سازمان کل نقشه‌برداری مصر",en:"Egyptian General Authority of Survey",da:"Egyptens Generaldirektorat for Opmåling"},"fcna":{kmr:"Encûmena Fiqhê ya Amerîkaya Bakur",ckb:"ئەنجومەنی فیقهی ئەمریکای باکوور",zza:"Encumenê Fiqhê yê Amerikaya Vakur",ar:"مجلس الفقه لأمريكا الشمالية",tr:"Kuzey Amerika Fıkıh Konseyi",fa:"شورای فقهی آمریکای شمالی",en:"Fiqh Council of North America",da:"Det Nordamerikanske Fiqh-råd"},"igmg":{kmr:"Civata Îslamî Millî Görüş",ckb:"کۆمەڵگەی ئیسلامی میللی گۆرۆش",zza:"Cematê İslamî Millî Görüş",ar:"الجماعة الإسلامية ملّي غوروش",tr:"İslam Toplumu Millî Görüş",fa:"جامعه اسلامی ملی گوروش",en:"Islamic Community Millî Görüş",da:"Det Islamiske Fællesskab Millî Görüş"},"isna":{kmr:"Civaka Îslamî ya Amerîkaya Bakur",ckb:"کۆمەڵگەی ئیسلامی ئەمریکای باکوور",zza:"Cemaê İslamî yê Amerikaya Vakur",ar:"الجمعية الإسلامية لأمريكا الشمالية",tr:"Kuzey Amerika İslam Cemiyeti",fa:"انجمن اسلامی آمریکای شمالی",en:"Islamic Society of North America",da:"Det Islamiske Samfund i Nordamerika"},"karachi":{kmr:"Zanîngeha Zanistên Îslamî ya Karaçî",ckb:"زانکۆی زانستە ئیسلامیەکانی کەراچی",zza:"Unîversîteyê Zanayîşê İslamî yê Karaçî",ar:"جامعة العلوم الإسلامية، كراتشي",tr:"Karaçi İslami İlimler Üniversitesi",fa:"دانشگاه علوم اسلامی کراچی",en:"University of Islamic Sciences, Karachi",da:"Det Islamiske Videnskabsuniversitet i Karachi"},"mwl":{kmr:"Lîga Cîhanî ya Misilmanan",ckb:"لیگی جیهانی موسوڵمانان",zza:"Liga Dınya ya Musılmananan",ar:"رابطة العالم الإسلامي",tr:"Dünya İslam Birliği",fa:"رابطه جهانی اسلامی",en:"Muslim World League",da:"Den Muslimske Verdensliga"},"semerkand":{kmr:"Weqfa Semerqendê",ckb:"بنیادی سەمەرقەند",zza:"Vakfê Semerqendî",ar:"مؤسسة سمرقند",tr:"Semerkand Vakfı",fa:"بنیاد سمرقند",en:"Semerkand Foundation",da:"Semerkand-fonden"},"uoif":{kmr:"Yekîtiya Rêxistinên Îslamî yên Fransayê",ckb:"یەکێتی ڕێکخراوە ئیسلامییەکانی فەرەنسا",zza:"Yekîtiya Organîzasyonan İslamî yê Fransayî",ar:"اتحاد المنظمات الإسلامية في فرنسا",tr:"Fransa İslami Örgütler Birliği",fa:"اتحادیه سازمان‌های اسلامی فرانسه",en:"Union of Islamic Organizations of France",da:"Sammenslutningen af Islamiske Organisationer i Frankrig"}};
@@ -445,7 +446,7 @@ const INSTS=[
  {id:"uoif",name:"UOIF",desc:"France",aladhan:12,fajrAngle:12,ishaAngle:12,asrFactor:1}
 ];
 const COUNTRY_TRANS={"Denmark":{kmr:"Danîmarka",ckb:"دانمارک",zza:"Danîmarka",ar:"الدنمارك",tr:"Danimarka",fa:"دانمارک",en:"Denmark",da:"Danmark"},"Turkey":{kmr:"Tirkiye",ckb:"تورکیا",zza:"Tırkiya",ar:"تركيا",tr:"Türkiye",fa:"ترکیه",en:"Türkiye",da:"Tyrkiet"},"Iraq":{kmr:"Iraq",ckb:"عێراق",zza:"Iraq",ar:"العراق",tr:"Irak",fa:"عراق",en:"Iraq",da:"Irak"},"Syria":{kmr:"Sûriye",ckb:"سووریا",zza:"Suriye",ar:"سوريا",tr:"Suriye",fa:"سوریه",en:"Syria",da:"Syrien"},"Iran":{kmr:"Îran",ckb:"ئێران",zza:"İran",ar:"إيران",tr:"İran",fa:"ایران",en:"Iran",da:"Iran"},"Germany":{kmr:"Almanya",ckb:"ئەڵمانیا",zza:"Almanya",ar:"ألمانيا",tr:"Almanya",fa:"آلمان",en:"Germany",da:"Tyskland"},"Sweden":{kmr:"Swêd",ckb:"سوید",zza:"İsveç",ar:"السويد",tr:"İsveç",fa:"سوئد",en:"Sweden",da:"Sverige"},"Netherlands":{kmr:"Holenda",ckb:"هۆڵەندا",zza:"Hollanda",ar:"هولندا",tr:"Hollanda",fa:"هلند",en:"Netherlands",da:"Holland"},"United Kingdom":{kmr:"Brîtanya",ckb:"بەریتانیا",zza:"İngiltere",ar:"المملكة المتحدة",tr:"Birleşik Krallık",fa:"بریتانیا",en:"United Kingdom",da:"Storbritannien"},"France":{kmr:"Fransa",ckb:"فەرەنسا",zza:"Fransa",ar:"فرنسا",tr:"Fransa",fa:"فرانسه",en:"France",da:"Frankrig"},"Belgium":{kmr:"Belçîka",ckb:"بەلجیکا",zza:"Belçika",ar:"بلجيكا",tr:"Belçika",fa:"بلژیک",en:"Belgium",da:"Belgien"},"Norway":{kmr:"Norwêc",ckb:"نەرویج",zza:"Norveç",ar:"النرويج",tr:"Norveç",fa:"نروژ",en:"Norway",da:"Norge"},"Switzerland":{kmr:"Swîsre",ckb:"سویسرا",zza:"İsviçre",ar:"سويسرا",tr:"İsviçre",fa:"سوئیس",en:"Switzerland",da:"Schweiz"},"Austria":{kmr:"Awistirya",ckb:"ئاوستریا",zza:"Avusturya",ar:"النمسا",tr:"Avusturya",fa:"اتریش",en:"Austria",da:"Østrig"}};
-const CITY_TRANS={"Diyarbakir":{kmr:"Amed",zza:"Amed",ckb:"ئامەد"},"Mardin":{kmr:"Mêrdîn",zza:"Mêrdîn",ckb:"مێردین"},"Van":{kmr:"Wan",zza:"Wan",ckb:"وان"},"Mus":{kmr:"Mûş",zza:"Mûş",ckb:"مووش"},"Agri":{kmr:"Agirî",zza:"Agirî",ckb:"ئاگری"},"Hakkari":{kmr:"Colemêrg",zza:"Colemêrg",ckb:"کۆلەمێرگ"},"Sirnak":{kmr:"Şirnex",zza:"Şirnex",ckb:"شرنخ"},"Batman":{kmr:"Êlih",zza:"Êlih",ckb:"ئێلیح"},"Bitlis":{kmr:"Bedlîs",zza:"Bedlîs",ckb:"بەدلیس"},"Bingol":{kmr:"Çewlîg",zza:"Çewlîg",ckb:"چەولیگ"},"Tunceli":{kmr:"Dêrsim",zza:"Dêrsim",ckb:"دێرسم"},"Siirt":{kmr:"Sêrt",zza:"Sêrt",ckb:"سێرت"},"Sanliurfa":{kmr:"Riha",zza:"Riha",ckb:"ڕیها"},"Adiyaman":{kmr:"Semsûr",zza:"Semsûr",ckb:"سەمسوور"},"Elazig":{kmr:"Xarpêt",zza:"Xarpêt",ckb:"خەرپێت"},"Kahramanmaras":{kmr:"Mereş",zza:"Mereş",ckb:"مەعریش"},"Malatya":{kmr:"Meletî",zza:"Meletî",ckb:"مەلەتی"},"Cizre":{kmr:"Cizîr",zza:"Cizîr",ckb:"جزیر"},"Silvan":{kmr:"Farqîn",zza:"Farqîn",ckb:"فارقین"},"Nusaybin":{kmr:"Nisêbîn",zza:"Nisêbîn",ckb:"نسێبین"},"Midyat":{kmr:"Midyad",zza:"Midyad",ckb:"مدیاد"},"Tatvan":{kmr:"Tetwan",zza:"Tetwan",ckb:"تەتوان"},"Ercis":{kmr:"Erciş",zza:"Erciş",ckb:"ئەرجیش"},"Idil":{kmr:"Hezex",zza:"Hezex",ckb:"هەزەخ"},"Kiziltepe":{kmr:"Qoser",zza:"Qoser",ckb:"قۆسەر"},"Viransehir":{kmr:"Bêrecuk",zza:"Bêrecuk",ckb:"بێرەجوک"},"Erbil":{kmr:"Hewlêr",zza:"Hewlêr",ckb:"ھەولێر"},"Sulaymaniyah":{kmr:"Silêmanî",zza:"Silêmanî",ckb:"سلێمانی"},"Duhok":{kmr:"Duhok",zza:"Duhok",ckb:"دهۆک"},"Kirkuk":{kmr:"Kerkûk",zza:"Kerkûk",ckb:"کەرکووک"},"Halabja":{kmr:"Helebce",zza:"Helebce",ckb:"هەڵەبجە"},"Zakho":{kmr:"Zaxo",zza:"Zaxo",ckb:"زاخۆ"},"Koya":{kmr:"Koye",zza:"Koye",ckb:"کۆیە"},"Rawanduz":{kmr:"Rewandiz",zza:"Rewandiz",ckb:"ڕەواندز"},"Amedi":{kmr:"Amêdî",zza:"Amêdî",ckb:"ئامێدی"},"Soran":{kmr:"Soran",zza:"Soran",ckb:"سۆران"},"Akre":{kmr:"Akrê",zza:"Akrê",ckb:"ئاکرێ"},"Chamchamal":{kmr:"Çemçemal",zza:"Çemçemal",ckb:"چەمچەماڵ"},"Penjwen":{kmr:"Pencwîn",zza:"Pencwîn",ckb:"پێنجوین"},"Ranya":{kmr:"Ranya",zza:"Ranya",ckb:"ڕانیە"},"Qaladze":{kmr:"Qeladizê",zza:"Qeladizê",ckb:"قەڵادزێ"},"Mawat":{kmr:"Mawet",zza:"Mawet",ckb:"مه‌وه‌ت"},"Dokan":{kmr:"Dokan",zza:"Dokan",ckb:"دۆکان"},"Shaqlawa":{kmr:"Şeqlawe",zza:"Şeqlawe",ckb:"شەقڵاوە"},"Sinjar":{kmr:"Şingal",zza:"Şingal",ckb:"شنگال"},"Tal Afar":{kmr:"Tilêfer",zza:"Tilêfer",ckb:"تەلعەفەر"},"Khanaqin":{kmr:"Xaneqîn",zza:"Xaneqîn",ckb:"خانەقین"},"Kalar":{kmr:"Kelar",zza:"Kelar",ckb:"کەلار"},"Kifri":{kmr:"Kifrî",zza:"Kifrî",ckb:"کفری"},"Bashiqa":{kmr:"Başîqe",zza:"Başîqe",ckb:"باشیقە"},"Sheikhan":{kmr:"Şêxan",zza:"Şêxan",ckb:"شێخان"},"Sumel":{kmr:"Simêl",zza:"Simêl",ckb:"سێمێل"},"Bardarash":{kmr:"Berdereş",zza:"Berdereş",ckb:"بەردەڕەش"},"Qamishli":{kmr:"Qamişlo",zza:"Qamişlo",ckb:"قامیشلۆ"},"Afrin":{kmr:"Efrîn",zza:"Efrîn",ckb:"عەفرین"},"Kobani":{kmr:"Kobanî",zza:"Kobanî",ckb:"کۆبانی"},"Al-Malikiyah":{kmr:"Dêrik",zza:"Dêrik",ckb:"دێرک"},"Hasakah":{kmr:"Hesîçe",zza:"Hesîçe",ckb:"حەسەکە"},"Ras al-Ain":{kmr:"Serêkaniyê",zza:"Serêkaniyê",ckb:"سەرێکانیێ"},"Tell Tamer":{kmr:"Girê Xurma",zza:"Girê Xurma",ckb:"گرێ خورما"},"Amuda":{kmr:"Amûdê",zza:"Amûdê",ckb:"ئامودێ"},"Darbasiyah":{kmr:"Dirbêsiyê",zza:"Dirbêsiyê",ckb:"دربێسیێ"},"Tirbespiye":{kmr:"Tirbespiyê",zza:"Tirbespiyê",ckb:"تربەسپیێ"},"Jindires":{kmr:"Cindirês",zza:"Cindirês",ckb:"جندیرێس"},"Tal Abyad":{kmr:"Girê Spî",zza:"Girê Spî",ckb:"گرێ سپی"},"Mahabad":{kmr:"Mehabad",zza:"Mehabad",ckb:"مەهاباد"},"Sanandaj":{kmr:"Sine",zza:"Sine",ckb:"سنە"},"Kermanshah":{kmr:"Kirmaşan",zza:"Kirmaşan",ckb:"کرماشان"},"Urmia":{kmr:"Wirmê",zza:"Wirmê",ckb:"ورمێ"},"Bukan":{kmr:"Bokan",zza:"Bokan",ckb:"بۆکان"},"Saqqez":{kmr:"Seqiz",zza:"Seqiz",ckb:"سەقز"},"Marivan":{kmr:"Mêrîwan",zza:"Mêrîwan",ckb:"مەریوان"},"Piranshahr":{kmr:"Pîranşar",zza:"Pîranşar",ckb:"پیرانشار"},"Baneh":{kmr:"Banê",zza:"Banê",ckb:"بانە"},"Javanrud":{kmr:"Cwanro",zza:"Cwanro",ckb:"جوانڕۆ"},"Sardasht":{kmr:"Serdeşt",zza:"Serdeşt",ckb:"سەردەشت"},"Qorveh":{kmr:"Qoretû",zza:"Qoretû",ckb:"قورەتوو"},"Kamyaran":{kmr:"Kamyaran",zza:"Kamyaran",ckb:"کامیاران"},"Dehgolan":{kmr:"Dêhgolan",zza:"Dêhgolan",ckb:"دێهگوڵان"},"Divandarreh":{kmr:"Dîwandere",zza:"Dîwandere",ckb:"دیوەندەرە"},"Paveh":{kmr:"Pawe",zza:"Pawe",ckb:"پاوە"},"Salmas":{kmr:"Selmas",zza:"Selmas",ckb:"سەلماس"},"Khoy":{kmr:"Xoy",zza:"Xoy",ckb:"خۆی"},"Naqadeh":{kmr:"Sêwlimê",zza:"Sêwlimê",ckb:"سێولیمێ"},"Oshnaviyeh":{kmr:"Şino",zza:"Şino",ckb:"شنۆ"},"Miandoab":{kmr:"Miyandoab",zza:"Miyandoab",ckb:"میاندوآب"},"Damascus":{kmr:"Şam",zza:"Şam",ckb:"شام",ar:"دمشق",tr:"Şam",fa:"دمشق"},"Baghdad":{kmr:"Bexda",zza:"Bexda",ckb:"بەغدا",ar:"بغداد",tr:"Bağdat",fa:"بغداد"},"Tehran":{kmr:"Tehran",zza:"Tehran",ckb:"تاران",ar:"طهران",tr:"Tahran",fa:"تهران"},"Mashhad":{ckb:"مەشهەد",ar:"مشهد",tr:"Meşhed",fa:"مشهد"},"Isfahan":{ckb:"ئیسفەهان",ar:"أصفهان",tr:"İsfahan",fa:"اصفهان"},"Tabriz":{kmr:"Tebrîz",zza:"Tebrîz",ckb:"تەوریز",ar:"تبريز",tr:"Tebriz",fa:"تبریز"},"Shiraz":{ckb:"شیراز",ar:"شيراز",tr:"Şiraz",fa:"شیراز"},"Qom":{ckb:"قم",ar:"قم",tr:"Kum",fa:"قم"},"Ahvaz":{ckb:"ئاهواز",ar:"الأهواز",tr:"Ahvaz",fa:"اهواز"},"Aleppo":{kmr:"Heleb",zza:"Heleb",ckb:"هەڵەب",ar:"حلب",tr:"Halep",fa:"حلب"},"Homs":{ckb:"حمص",ar:"حمص",tr:"Humus",fa:"حمص"},"Latakia":{ckb:"لازقیە",ar:"اللاذقية",tr:"Lazkiye",fa:"لاذقیه"},"Istanbul":{kmr:"Stenbol",zza:"İstanbul",ckb:"ئیستەنبوڵ",ar:"إسطنبول",fa:"استانبول"},"Ankara":{kmr:"Enqere",zza:"Enqere",ckb:"ئەنقەرە",ar:"أنقرة",fa:"آنکارا"},"Izmir":{kmr:"Îzmîr",zza:"Îzmîr",ckb:"ئیزمیر",ar:"إزمير",fa:"ازمیر"},"Mosul":{kmr:"Mûsil",zza:"Mûsil",ckb:"مووسڵ",ar:"الموصل",tr:"Musul",fa:"موصل"},"Basra":{kmr:"Besra",zza:"Besra",ckb:"بەسرە",ar:"البصرة",tr:"Basra",fa:"بصره"},"Najaf":{ckb:"نەجەف",ar:"النجف",tr:"Necef",fa:"نجف"},"Karbala":{ckb:"کەربەلا",ar:"كربلاء",tr:"Kerbela",fa:"کربلا"},"Copenhagen":{kmr:"Kopenhag",zza:"Kopenhag",ckb:"کۆپنهاگن",ar:"كوبنهاغن",tr:"Kopenhag",fa:"کپنهاگ",da:"København"},"Aarhus":{da:"Aarhus"},"Odense":{da:"Odense"},"Aalborg":{da:"Aalborg"},"Esbjerg":{kmr:"Esbjerg",zza:"Esbjerg",da:"Esbjerg"},"Roskilde":{da:"Roskilde"},"Munich":{kmr:"Munîx",zza:"Munîx",ckb:"مونیخ",ar:"ميونخ",tr:"Münih",fa:"مونیخ",da:"München"},"Cologne":{kmr:"Kolonya",zza:"Kolonya",ckb:"کۆلن",ar:"كولونيا",tr:"Köln",fa:"کلن",da:"Köln"},"Frankfurt":{ckb:"فرانکفۆرت",ar:"فرانكفورت",fa:"فرانکفورت"},"Berlin":{ckb:"بەرلین",ar:"برلين",fa:"برلین"},"Hamburg":{ckb:"هامبۆرگ",ar:"هامبورغ",fa:"هامبورگ"},"Hannover":{da:"Hannover"},"Nuremberg":{kmr:"Nûrnberg",zza:"Nûrnberg",ckb:"نورنبێرگ",ar:"نورمبرغ",tr:"Nürnberg",fa:"نورنبرگ",da:"Nürnberg"},"Stuttgart":{ckb:"شتوتگارت",ar:"شتوتغارت"},"Stockholm":{kmr:"Stokholm",zza:"Stokholm",ckb:"ستۆکهۆڵم",ar:"ستوكهولم",tr:"Stockholm",fa:"استکهلم"},"Gothenburg":{kmr:"Goteborg",zza:"Goteborg",ckb:"گۆتنبۆرگ",ar:"غوتنبرغ",tr:"Göteborg",fa:"گوتنبرگ",da:"Göteborg"},"Malmoe":{kmr:"Malmö",zza:"Malmö",ckb:"مالمۆ",ar:"مالمو",tr:"Malmö",fa:"مالمو",da:"Malmö"},"Amsterdam":{ckb:"ئامستردام",ar:"أمستردام",fa:"آمستردام"},"Rotterdam":{ckb:"ڕۆتردام",ar:"روتردام",fa:"روتردام"},"The Hague":{kmr:"Lahey",zza:"Lahey",ckb:"لاهای",ar:"لاهاي",tr:"Lahey",fa:"لاهه",da:"Haag"},"London":{kmr:"Londinê",zza:"Londra",ckb:"لەندەن",ar:"لندن",tr:"Londra",fa:"لندن"},"Manchester":{ckb:"مانچستەر",ar:"مانشستر",fa:"منچستر"},"Birmingham":{ckb:"بێرمنگهام",ar:"برمنغهام",fa:"بیرمنگام"},"Glasgow":{ckb:"گلاسگۆ",ar:"غلاسكو",fa:"گلاسکو"},"Edinburgh":{kmr:"Edînburg",zza:"Edînburg",ckb:"ئێدینبەرا",ar:"إدنبرة",tr:"Edinburgh",fa:"ادینبرا"},"Paris":{kmr:"Parîs",zza:"Paris",ckb:"پاریس",ar:"باريس",tr:"Paris",fa:"پاریس"},"Marseille":{ckb:"مارسەی",ar:"مرسيليا",fa:"مارسی"},"Lyon":{ckb:"لیۆن",ar:"ليون",fa:"لیون"},"Toulouse":{ckb:"تولوز",ar:"تولوز",fa:"تولوز"},"Strasbourg":{kmr:"Strasbourg",zza:"Strasbourg",ckb:"ستراسبۆرگ",ar:"ستراسبورغ",fa:"استراسبورگ"},"Brussels":{kmr:"Brûksel",zza:"Brûksel",ckb:"بروکسێل",ar:"بروكسل",tr:"Brüksel",fa:"بروکسل"},"Antwerp":{kmr:"Antwerpen",zza:"Antwerpen",ckb:"ئانتورپ",ar:"أنتويرب",tr:"Antwerp",fa:"آنتورپ"},"Ghent":{da:"Gent"},"Oslo":{ckb:"ئۆسلۆ",ar:"أوسلو",fa:"اسلو"},"Bergen":{ckb:"بێرگن",ar:"بيرغن",fa:"برگن"},"Zurich":{kmr:"Zûrîx",zza:"Zûrîx",ckb:"زوریخ",ar:"زيورخ",tr:"Zürih",fa:"زوریخ"},"Geneva":{kmr:"Cenevre",zza:"Cenevre",ckb:"جینێظ",ar:"جنيف",tr:"Cenevre",fa:"ژنو"},"Basel":{ckb:"بازل",ar:"بازل",fa:"بازل"},"Bern":{kmr:"Bern",zza:"Bern",ckb:"بێرن",ar:"برن",fa:"برن"},"Vienna":{kmr:"Viyana",zza:"Viyana",ckb:"ڤیەنا",ar:"فيينا",tr:"Viyana",fa:"وین"},"Graz":{ckb:"گراتس"},"Salzburg":{ckb:"زالتسبۆرگ",ar:"سالزبورغ",fa:"سالزبورگ"}};
+const CITY_TRANS={"Kirklareli":{kmr:"Kirqlarêlî",ckb:"کیرکلارێلی"},"Igdir":{kmr:"Iğdır",zza:"Iğdır",ckb:"ئیغدیر"},"Gumushane":{kmr:"Gumişxane",ckb:"گومیشخانە"},"Bayburt":{kmr:"Baybûrd",ckb:"بایبورت"},"Artvin":{kmr:"Artivîn",ckb:"ئارتڤین"},"Ardahan":{kmr:"Erdexan",zza:"Erdexan",ckb:"ئەردەخان"},"Kilis":{kmr:"Kîlîs",zza:"Kîlîs",ckb:"کیلیس"},"Bolu":{kmr:"Bolû",ckb:"بۆلو"},"Duzce":{kmr:"Dûzce",ckb:"دوزجە"},"Karabuk":{kmr:"Qarabûk",ckb:"قاراووک"},"Bartin":{kmr:"Bartîn",ckb:"بارتین"},"Zonguldak":{kmr:"Zongûldak",ckb:"زونغولداک"},"Kirsehir":{kmr:"Kirşehîr",ckb:"کیرشەهیر"},"Aydin":{kmr:"Aydin",ckb:"ئایدین"},"Afyonkarahisar":{kmr:"Afyon",ckb:"ئافیۆن"},"Kutahya":{kmr:"Kûtahya",ckb:"کوتاهیا"},"Usak":{kmr:"Ûşaq",ckb:"ووشاق"},"Karaman":{kmr:"Qaramûn",ckb:"قارامون"},"Aksaray":{kmr:"Axsaray",ckb:"ئاخساڕای"},"Nigde":{kmr:"Nîgde",ckb:"نیغدە"},"Kirikkale":{kmr:"Kirîqale",ckb:"کیریقالە"},"Yozgat":{kmr:"Yûzgat",ckb:"یووزگات"},"Corum":{kmr:"Çorum",ckb:"چۆروم"},"Tokat":{kmr:"Tûqad",ckb:"توقات"},"Amasya":{kmr:"Amasye",ckb:"ئاماسیە"},"Bilecik":{kmr:"Bilecîk",ckb:"بیلەجیک"},"Burdur":{kmr:"Burdûr",ckb:"بوردور"},"Isparta":{kmr:"Ispartê",ckb:"ئیسپارتە"},"Yalova":{kmr:"Yalova",ckb:"یالووا"},"Osmaniye":{kmr:"Osmanîye",ckb:"عوسمانیە"},"Ordu":{kmr:"Orda",ckb:"ئۆردو"},"Giresun":{kmr:"Gêresûn",ckb:"گێرەسون"},"Rize":{kmr:"Rîze",ckb:"ڕیزە"},"Kocaeli":{kmr:"Îzmît",ckb:"ئیزمیت"},"Kastamonu":{kmr:"Qestemonî",ckb:"قەستەمۆنی"},"Sinop":{kmr:"Sînop",ckb:"سینۆپ"},"Nevsehir":{kmr:"Newşehir",ckb:"نێوشەهیر"},"Balikesir":{kmr:"Balîkesîr",ckb:"بالیکەسیر"},"Canakkale":{kmr:"Çanakqele",ckb:"چانەقلە"},"Edirne":{kmr:"Edirne",ckb:"ئەدیرنە"},"Tekirdag":{kmr:"Têkirdag",ckb:"تێکیرداغ"},"Mugla":{kmr:"Mûğla",ckb:"موغلا"},"Manisa":{kmr:"Manîse",ckb:"مانیسە"},"Sakarya":{kmr:"Adapazarî",ckb:"ئادابازاری"},"Hatay":{kmr:"Îskenderûn",ckb:"ئیسکەندەرون"},"Erzincan":{kmr:"Erzingan",zza:"Erzingan",ckb:"ئەرزینجان"},"Kars":{kmr:"Qers",zza:"Qers",ckb:"قەرس"},"Sivas":{kmr:"Sêwas",zza:"Sêwas",ckb:"سێواس"},"Trabzon":{kmr:"Trébzon",zza:"Trébzon",ckb:"تراپزۆن"},"Erzurum":{kmr:"Erzrom",zza:"Erzrom",ckb:"ئەرزیروم"},"Denizli":{kmr:"Denizlî",ckb:"دەنیزلی"},"Samsun":{kmr:"Samsûn",zza:"Samsûn",ckb:"سامسون"},"Eskisehir":{kmr:"Şêxwî",zza:"Şêxwî",ckb:"ئێسکیشەهیر"},"Kayseri":{kmr:"Qeyserî",zza:"Qeyserî",ckb:"قەیسەری"},"Antalya":{kmr:"Entelya",zza:"Entelya",ckb:"ئەنتالیا"},"Mersin":{kmr:"Mêrsîn",zza:"Mêrsîn",ckb:"مێرسین"},"Gaziantep":{kmr:"Dîlok",zza:"Dîlok",ckb:"دیلۆک"},"Adana":{kmr:"Edene",zza:"Edene",ckb:"ئەدەنە"},"Bursa":{kmr:"Birse",zza:"Birse",ckb:"بورسا"},"Konya":{kmr:"Qonye",zza:"Qonye",ckb:"قۆنیە"},"Diyarbakir":{kmr:"Amed",zza:"Amed",ckb:"ئامەد"},"Mardin":{kmr:"Mêrdîn",zza:"Mêrdîn",ckb:"مێردین"},"Van":{kmr:"Wan",zza:"Wan",ckb:"وان"},"Mus":{kmr:"Mûş",zza:"Mûş",ckb:"مووش"},"Agri":{kmr:"Agirî",zza:"Agirî",ckb:"ئاگری"},"Hakkari":{kmr:"Colemêrg",zza:"Colemêrg",ckb:"کۆلەمێرگ"},"Sirnak":{kmr:"Şirnex",zza:"Şirnex",ckb:"شرنخ"},"Batman":{kmr:"Êlih",zza:"Êlih",ckb:"ئێلیح"},"Bitlis":{kmr:"Bedlîs",zza:"Bedlîs",ckb:"بەدلیس"},"Bingol":{kmr:"Çewlîg",zza:"Çewlîg",ckb:"چەولیگ"},"Tunceli":{kmr:"Dêrsim",zza:"Dêrsim",ckb:"دێرسم"},"Siirt":{kmr:"Sêrt",zza:"Sêrt",ckb:"سێرت"},"Sanliurfa":{kmr:"Riha",zza:"Riha",ckb:"ڕیها"},"Adiyaman":{kmr:"Semsûr",zza:"Semsûr",ckb:"سەمسوور"},"Elazig":{kmr:"Xarpêt",zza:"Xarpêt",ckb:"خەرپێت"},"Kahramanmaras":{kmr:"Mereş",zza:"Mereş",ckb:"مەعریش"},"Malatya":{kmr:"Meletî",zza:"Meletî",ckb:"مەلەتی"},"Cizre":{kmr:"Cizîr",zza:"Cizîr",ckb:"جزیر"},"Silvan":{kmr:"Farqîn",zza:"Farqîn",ckb:"فارقین"},"Nusaybin":{kmr:"Nisêbîn",zza:"Nisêbîn",ckb:"نسێبین"},"Midyat":{kmr:"Midyad",zza:"Midyad",ckb:"مدیاد"},"Tatvan":{kmr:"Tetwan",zza:"Tetwan",ckb:"تەتوان"},"Ercis":{kmr:"Erciş",zza:"Erciş",ckb:"ئەرجیش"},"Idil":{kmr:"Hezex",zza:"Hezex",ckb:"هەزەخ"},"Kiziltepe":{kmr:"Qoser",zza:"Qoser",ckb:"قۆسەر"},"Viransehir":{kmr:"Bêrecuk",zza:"Bêrecuk",ckb:"بێرەجوک"},"Erbil":{kmr:"Hewlêr",zza:"Hewlêr",ckb:"ھەولێر"},"Sulaymaniyah":{kmr:"Silêmanî",zza:"Silêmanî",ckb:"سلێمانی"},"Duhok":{kmr:"Duhok",zza:"Duhok",ckb:"دهۆک"},"Kirkuk":{kmr:"Kerkûk",zza:"Kerkûk",ckb:"کەرکووک"},"Halabja":{kmr:"Helebce",zza:"Helebce",ckb:"هەڵەبجە"},"Zakho":{kmr:"Zaxo",zza:"Zaxo",ckb:"زاخۆ"},"Koya":{kmr:"Koye",zza:"Koye",ckb:"کۆیە"},"Rawanduz":{kmr:"Rewandiz",zza:"Rewandiz",ckb:"ڕەواندز"},"Amedi":{kmr:"Amêdî",zza:"Amêdî",ckb:"ئامێدی"},"Soran":{kmr:"Soran",zza:"Soran",ckb:"سۆران"},"Akre":{kmr:"Akrê",zza:"Akrê",ckb:"ئاکرێ"},"Chamchamal":{kmr:"Çemçemal",zza:"Çemçemal",ckb:"چەمچەماڵ"},"Penjwen":{kmr:"Pencwîn",zza:"Pencwîn",ckb:"پێنجوین"},"Ranya":{kmr:"Ranya",zza:"Ranya",ckb:"ڕانیە"},"Qaladze":{kmr:"Qeladizê",zza:"Qeladizê",ckb:"قەڵادزێ"},"Mawat":{kmr:"Mawet",zza:"Mawet",ckb:"مه‌وه‌ت"},"Dokan":{kmr:"Dokan",zza:"Dokan",ckb:"دۆکان"},"Shaqlawa":{kmr:"Şeqlawe",zza:"Şeqlawe",ckb:"شەقڵاوە"},"Sinjar":{kmr:"Şingal",zza:"Şingal",ckb:"شنگال"},"Tal Afar":{kmr:"Tilêfer",zza:"Tilêfer",ckb:"تەلعەفەر"},"Khanaqin":{kmr:"Xaneqîn",zza:"Xaneqîn",ckb:"خانەقین"},"Kalar":{kmr:"Kelar",zza:"Kelar",ckb:"کەلار"},"Kifri":{kmr:"Kifrî",zza:"Kifrî",ckb:"کفری"},"Bashiqa":{kmr:"Başîqe",zza:"Başîqe",ckb:"باشیقە"},"Sheikhan":{kmr:"Şêxan",zza:"Şêxan",ckb:"شێخان"},"Sumel":{kmr:"Simêl",zza:"Simêl",ckb:"سێمێل"},"Bardarash":{kmr:"Berdereş",zza:"Berdereş",ckb:"بەردەڕەش"},"Qamishli":{kmr:"Qamişlo",zza:"Qamişlo",ckb:"قامیشلۆ"},"Afrin":{kmr:"Efrîn",zza:"Efrîn",ckb:"عەفرین"},"Kobani":{kmr:"Kobanî",zza:"Kobanî",ckb:"کۆبانی"},"Al-Malikiyah":{kmr:"Dêrik",zza:"Dêrik",ckb:"دێرک"},"Hasakah":{kmr:"Hesîçe",zza:"Hesîçe",ckb:"حەسەکە"},"Ras al-Ain":{kmr:"Serêkaniyê",zza:"Serêkaniyê",ckb:"سەرێکانیێ"},"Tell Tamer":{kmr:"Girê Xurma",zza:"Girê Xurma",ckb:"گرێ خورما"},"Amuda":{kmr:"Amûdê",zza:"Amûdê",ckb:"ئامودێ"},"Darbasiyah":{kmr:"Dirbêsiyê",zza:"Dirbêsiyê",ckb:"دربێسیێ"},"Tirbespiye":{kmr:"Tirbespiyê",zza:"Tirbespiyê",ckb:"تربەسپیێ"},"Jindires":{kmr:"Cindirês",zza:"Cindirês",ckb:"جندیرێس"},"Tal Abyad":{kmr:"Girê Spî",zza:"Girê Spî",ckb:"گرێ سپی"},"Mahabad":{kmr:"Mehabad",zza:"Mehabad",ckb:"مەهاباد"},"Sanandaj":{kmr:"Sine",zza:"Sine",ckb:"سنە"},"Kermanshah":{kmr:"Kirmaşan",zza:"Kirmaşan",ckb:"کرماشان"},"Urmia":{kmr:"Wirmê",zza:"Wirmê",ckb:"ورمێ"},"Bukan":{kmr:"Bokan",zza:"Bokan",ckb:"بۆکان"},"Saqqez":{kmr:"Seqiz",zza:"Seqiz",ckb:"سەقز"},"Marivan":{kmr:"Mêrîwan",zza:"Mêrîwan",ckb:"مەریوان"},"Piranshahr":{kmr:"Pîranşar",zza:"Pîranşar",ckb:"پیرانشار"},"Baneh":{kmr:"Banê",zza:"Banê",ckb:"بانە"},"Javanrud":{kmr:"Cwanro",zza:"Cwanro",ckb:"جوانڕۆ"},"Sardasht":{kmr:"Serdeşt",zza:"Serdeşt",ckb:"سەردەشت"},"Qorveh":{kmr:"Qoretû",zza:"Qoretû",ckb:"قورەتوو"},"Kamyaran":{kmr:"Kamyaran",zza:"Kamyaran",ckb:"کامیاران"},"Dehgolan":{kmr:"Dêhgolan",zza:"Dêhgolan",ckb:"دێهگوڵان"},"Divandarreh":{kmr:"Dîwandere",zza:"Dîwandere",ckb:"دیوەندەرە"},"Paveh":{kmr:"Pawe",zza:"Pawe",ckb:"پاوە"},"Salmas":{kmr:"Selmas",zza:"Selmas",ckb:"سەلماس"},"Khoy":{kmr:"Xoy",zza:"Xoy",ckb:"خۆی"},"Naqadeh":{kmr:"Sêwlimê",zza:"Sêwlimê",ckb:"سێولیمێ"},"Oshnaviyeh":{kmr:"Şino",zza:"Şino",ckb:"شنۆ"},"Miandoab":{kmr:"Miyandoab",zza:"Miyandoab",ckb:"میاندوآب"},"Damascus":{kmr:"Şam",zza:"Şam",ckb:"شام",ar:"دمشق",tr:"Şam",fa:"دمشق"},"Baghdad":{kmr:"Bexda",zza:"Bexda",ckb:"بەغدا",ar:"بغداد",tr:"Bağdat",fa:"بغداد"},"Tehran":{kmr:"Tehran",zza:"Tehran",ckb:"تاران",ar:"طهران",tr:"Tahran",fa:"تهران"},"Mashhad":{ckb:"مەشهەد",ar:"مشهد",tr:"Meşhed",fa:"مشهد"},"Isfahan":{ckb:"ئیسفەهان",ar:"أصفهان",tr:"İsfahan",fa:"اصفهان"},"Tabriz":{kmr:"Tebrîz",zza:"Tebrîz",ckb:"تەوریز",ar:"تبريز",tr:"Tebriz",fa:"تبریز"},"Shiraz":{ckb:"شیراز",ar:"شيراز",tr:"Şiraz",fa:"شیراز"},"Qom":{ckb:"قم",ar:"قم",tr:"Kum",fa:"قم"},"Ahvaz":{ckb:"ئاهواز",ar:"الأهواز",tr:"Ahvaz",fa:"اهواز"},"Aleppo":{kmr:"Heleb",zza:"Heleb",ckb:"هەڵەب",ar:"حلب",tr:"Halep",fa:"حلب"},"Homs":{ckb:"حمص",ar:"حمص",tr:"Humus",fa:"حمص"},"Latakia":{ckb:"لازقیە",ar:"اللاذقية",tr:"Lazkiye",fa:"لاذقیه"},"Istanbul":{kmr:"Stenbol",zza:"Stenbol",ckb:"ئیستەنبوڵ",ar:"إسطنبول",fa:"استانبول"},"Ankara":{kmr:"Enqere",zza:"Enqere",ckb:"ئەنقەرە",ar:"أنقرة",fa:"آنکارا"},"Izmir":{kmr:"Îzmîr",zza:"Îzmîr",ckb:"ئیزمیر",ar:"إزمير",fa:"ازمیر"},"Mosul":{kmr:"Mûsil",zza:"Mûsil",ckb:"مووسڵ",ar:"الموصل",tr:"Musul",fa:"موصل"},"Basra":{kmr:"Besra",zza:"Besra",ckb:"بەسرە",ar:"البصرة",tr:"Basra",fa:"بصره"},"Najaf":{ckb:"نەجەف",ar:"النجف",tr:"Necef",fa:"نجف"},"Karbala":{ckb:"کەربەلا",ar:"كربلاء",tr:"Kerbela",fa:"کربلا"},"Copenhagen":{kmr:"Kopenhag",zza:"Kopenhag",ckb:"کۆپنهاگن",ar:"كوبنهاغن",tr:"Kopenhag",fa:"کپنهاگ",da:"København"},"Aarhus":{da:"Aarhus"},"Odense":{da:"Odense"},"Aalborg":{da:"Aalborg"},"Esbjerg":{kmr:"Esbjerg",zza:"Esbjerg",da:"Esbjerg"},"Roskilde":{da:"Roskilde"},"Munich":{kmr:"Munîx",zza:"Munîx",ckb:"مونیخ",ar:"ميونخ",tr:"Münih",fa:"مونیخ",da:"München"},"Cologne":{kmr:"Kolonya",zza:"Kolonya",ckb:"کۆلن",ar:"كولونيا",tr:"Köln",fa:"کلن",da:"Köln"},"Frankfurt":{ckb:"فرانکفۆرت",ar:"فرانكفورت",fa:"فرانکفورت"},"Berlin":{ckb:"بەرلین",ar:"برلين",fa:"برلین"},"Hamburg":{ckb:"هامبۆرگ",ar:"هامبورغ",fa:"هامبورگ"},"Hannover":{da:"Hannover"},"Nuremberg":{kmr:"Nûrnberg",zza:"Nûrnberg",ckb:"نورنبێرگ",ar:"نورمبرغ",tr:"Nürnberg",fa:"نورنبرگ",da:"Nürnberg"},"Stuttgart":{ckb:"شتوتگارت",ar:"شتوتغارت"},"Stockholm":{kmr:"Stokholm",zza:"Stokholm",ckb:"ستۆکهۆڵم",ar:"ستوكهولم",tr:"Stockholm",fa:"استکهلم"},"Gothenburg":{kmr:"Goteborg",zza:"Goteborg",ckb:"گۆتنبۆرگ",ar:"غوتنبرغ",tr:"Göteborg",fa:"گوتنبرگ",da:"Göteborg"},"Malmoe":{kmr:"Malmö",zza:"Malmö",ckb:"مالمۆ",ar:"مالمو",tr:"Malmö",fa:"مالمو",da:"Malmö"},"Amsterdam":{ckb:"ئامستردام",ar:"أمستردام",fa:"آمستردام"},"Rotterdam":{ckb:"ڕۆتردام",ar:"روتردام",fa:"روتردام"},"The Hague":{kmr:"Lahey",zza:"Lahey",ckb:"لاهای",ar:"لاهاي",tr:"Lahey",fa:"لاهه",da:"Haag"},"London":{kmr:"Londinê",zza:"Londra",ckb:"لەندەن",ar:"لندن",tr:"Londra",fa:"لندن"},"Manchester":{ckb:"مانچستەر",ar:"مانشستر",fa:"منچستر"},"Birmingham":{ckb:"بێرمنگهام",ar:"برمنغهام",fa:"بیرمنگام"},"Glasgow":{ckb:"گلاسگۆ",ar:"غلاسكو",fa:"گلاسکو"},"Edinburgh":{kmr:"Edînburg",zza:"Edînburg",ckb:"ئێدینبەرا",ar:"إدنبرة",tr:"Edinburgh",fa:"ادینبرا"},"Paris":{kmr:"Parîs",zza:"Paris",ckb:"پاریس",ar:"باريس",tr:"Paris",fa:"پاریس"},"Marseille":{ckb:"مارسەی",ar:"مرسيليا",fa:"مارسی"},"Lyon":{ckb:"لیۆن",ar:"ليون",fa:"لیون"},"Toulouse":{ckb:"تولوز",ar:"تولوز",fa:"تولوز"},"Strasbourg":{kmr:"Strasbourg",zza:"Strasbourg",ckb:"ستراسبۆرگ",ar:"ستراسبورغ",fa:"استراسبورگ"},"Brussels":{kmr:"Brûksel",zza:"Brûksel",ckb:"بروکسێل",ar:"بروكسل",tr:"Brüksel",fa:"بروکسل"},"Antwerp":{kmr:"Antwerpen",zza:"Antwerpen",ckb:"ئانتورپ",ar:"أنتويرب",tr:"Antwerp",fa:"آنتورپ"},"Ghent":{da:"Gent"},"Oslo":{ckb:"ئۆسلۆ",ar:"أوسلو",fa:"اسلو"},"Bergen":{ckb:"بێرگن",ar:"بيرغن",fa:"برگن"},"Zurich":{kmr:"Zûrîx",zza:"Zûrîx",ckb:"زوریخ",ar:"زيورخ",tr:"Zürih",fa:"زوریخ"},"Geneva":{kmr:"Cenevre",zza:"Cenevre",ckb:"جینێظ",ar:"جنيف",tr:"Cenevre",fa:"ژنو"},"Basel":{ckb:"بازل",ar:"بازل",fa:"بازل"},"Bern":{kmr:"Bern",zza:"Bern",ckb:"بێرن",ar:"برن",fa:"برن"},"Vienna":{kmr:"Viyana",zza:"Viyana",ckb:"ڤیەنا",ar:"فيينا",tr:"Viyana",fa:"وین"},"Graz":{ckb:"گراتس"},"Salzburg":{ckb:"زالتسبۆرگ",ar:"سالزبورغ",fa:"سالزبورگ"}};
 // Timezone: standard UTC offset + whether the country observes EU/UK-style DST (last Sun Mar - last Sun Oct)
 const COUNTRY_TZ={
  "Denmark":{std:1,dst:true},"Turkey":{std:3,dst:false},"Iraq":{std:3,dst:false},
@@ -524,12 +525,11 @@ function computeLocalPrayerTimes(lat,lon,tzOffset,inst){
   const sunsetT=timeAngle(0.833,lat,decl); // standard sunset/Maghrib angle (atmospheric refraction)
   let ishaT=timeAngle(inst.ishaAngle,lat,decl);
   if(sunsetT==null)return null; // sun doesn't rise/set at all (polar day/night) — caller falls back to last-known data
-  // High-latitude summer fix: if the sun never reaches the Fajr/Isha angle
-  // (common in N. Europe in summer), use the widely-used "Angle-Based Method":
-  // estimate twilight length as a proportion of the night, scaled by angle/60.
+  // High-latitude fix: sun never reaches required angle (common in N. Europe in summer)
+  // Use 1/7 of night length — this matches what Diyanet officially uses for Denmark/N.Europe
   const nightLength=24-2*sunsetT;
-  if(fajrT==null)fajrT=sunsetT+(inst.fajrAngle/60)*nightLength;
-  if(ishaT==null)ishaT=sunsetT+(inst.ishaAngle/60)*nightLength;
+  if(fajrT==null)fajrT=sunsetT+(1/7)*nightLength;
+  if(ishaT==null)ishaT=sunsetT+(1/7)*nightLength;
   // Asr via shadow-length formula (Shafii factor=1, Hanafi factor=2)
   const laR=lat*Math.PI/180,deR=decl*Math.PI/180;
   const asrAngle=-Math.atan(1/(inst.asrFactor+Math.tan(Math.abs(laR-deR))))*180/Math.PI;
@@ -571,7 +571,17 @@ let S={langId:'en',cities:[{...COUNTRIES[0].cities[0]}],activeCity:0,inst:'diyan
 // city object (city.t) if the network request fails or is blocked by the
 // preview sandbox. Results are cached per city+method+date to avoid refetching.
 const prayerCache={};
-function todayKey(){const d=new Date();return d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate();}
+function todayKey(){
+  const d=new Date();
+  return d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate();
+}
+function todayAladhan(){
+  // Aladhan requires DD-MM-YYYY with zero padding
+  const d=new Date();
+  const dd=String(d.getDate()).padStart(2,'0');
+  const mm=String(d.getMonth()+1).padStart(2,'0');
+  return `${dd}-${mm}-${d.getFullYear()}`;
+}
 async function fetchLiveTimes(city){
   if(!city||city.lat==null||city.lon==null)return null;
   const inst=INSTS.find(i=>i.id===S.inst);
@@ -579,7 +589,8 @@ async function fetchLiveTimes(city){
   const key=`${city.lat},${city.lon},${method},${todayKey()}`;
   if(prayerCache[key])return prayerCache[key];
   try{
-    const url=`https://api.aladhan.com/v1/timings/${todayKey().split('-').reverse().join('-')}?latitude=${city.lat}&longitude=${city.lon}&method=${method}`;
+    // latitudeAdjustmentMethod=3 = angle-based method for high latitudes (used by Diyanet in N. Europe)
+    const url=`https://api.aladhan.com/v1/timings/${todayAladhan()}?latitude=${city.lat}&longitude=${city.lon}&method=${method}&latitudeAdjustmentMethod=3`;
     const res=await fetch(url);
     if(!res.ok)throw new Error('bad response');
     const data=await res.json();
@@ -644,7 +655,7 @@ function formatTime(t){
 function toggleTime24(el){
   S.time24=!S.time24;
   el.classList.toggle('on',S.time24);
-  renderPrayers();
+  renderPrayers();saveSettings();
 }
 function T(id,t){const e=document.getElementById(id);if(e)e.textContent=t;}
 function getPName(i){return L().p[i]||['Imsak','Fajr','Dhuhr','Asr','Maghrib','Isha'][i];}
@@ -731,8 +742,34 @@ function finishOnboard(){
   S.nameIdx=Math.floor(Math.random()*N99.length);
   document.getElementById('bnav').style.display='flex';
   document.getElementById('hdrRight').style.display='flex';
+  saveSettings();
   renderAll();showScreen('home');
   refreshActiveCityTimes();
+}
+function saveSettings(){
+  try{
+    localStorage.setItem('nimej_settings', JSON.stringify({
+      langId:S.langId, inst:S.inst, dark:S.dark, time24:S.time24,
+      azan:S.azan, cities:S.cities, activeCity:S.activeCity,
+      onboarded:true
+    }));
+  }catch(e){}
+}
+function loadSettings(){
+  try{
+    const raw=localStorage.getItem('nimej_settings');
+    if(!raw)return false;
+    const saved=JSON.parse(raw);
+    if(!saved.onboarded)return false;
+    S.langId=saved.langId||'en';
+    S.inst=saved.inst||'diyanet';
+    S.dark=saved.dark||false;
+    S.time24=saved.time24!==undefined?saved.time24:true;
+    S.azan=saved.azan||{f:true,d:true,a:true,m:true,i:true};
+    S.cities=saved.cities||[{...COUNTRIES[0].cities[0]}];
+    S.activeCity=saved.activeCity||0;
+    return true;
+  }catch(e){return false;}
 }
 
 // RENDER ALL
@@ -824,6 +861,10 @@ function renderHolidays(){
 let compassLive=false,compassHeading=0;
 function updateCompass(){
   const city=S.cities[S.activeCity];if(!city)return;
+  const l=L();
+  T('compassCity',cityLabel(city.n));T('compassCoord',city.coord);
+  T('qiblaDeg',city.qibla);T('qiblaLabel',(l.qibla||'Qibla from')+' '+cityLabel(city.n));
+  T('qiblaKa',l.makkah||'الكعبة المشرفة · Makkah');
   if(!compassLive){
     document.getElementById('compassNeedle').style.transform=`translateX(-50%) rotate(${parseFloat(city.qibla)||136}deg)`;
     document.getElementById('compassDial').style.transform='rotate(0deg)';
@@ -834,32 +875,37 @@ function updateCompass(){
 function applyLiveRotation(){
   const city=S.cities[S.activeCity];if(!city)return;
   const qibla=parseFloat(city.qibla)||136;
-  // Needle should always point at true Mecca direction in real space:
-  // rotate it opposite to the phone's own heading change, then add the qibla bearing.
-  const needleRot=qibla-compassHeading;
+  // Needle points to Mecca: offset qibla by how much the phone has rotated
+  const needleRot=(qibla-compassHeading+360)%360;
   document.getElementById('compassNeedle').style.transform=`translateX(-50%) rotate(${needleRot}deg)`;
-  // Rotate the N/S/E/W dial opposite to heading so it stays earth-aligned too
   document.getElementById('compassDial').style.transform=`rotate(${-compassHeading}deg)`;
+  // Show live heading for debug
+  const el=document.getElementById('liveHeading');
+  if(el)el.textContent=`${Math.round(compassHeading)}°`;
 }
+let lastAbsolute=false;
 function handleOrientation(e){
+  // Prefer absolute over relative — if both fire, only use absolute
+  if(e.type==='deviceorientation'&&lastAbsolute)return;
+  if(e.type==='deviceorientationabsolute')lastAbsolute=true;
+
   let heading;
   if(typeof e.webkitCompassHeading==='number'){
-    heading=e.webkitCompassHeading; // iOS Safari — already true compass heading
-  }else if(e.absolute&&e.alpha!=null){
-    heading=360-e.alpha; // most Android browsers with absolute orientation
+    // iOS Safari — gives true north compass heading directly
+    heading=e.webkitCompassHeading;
   }else if(e.alpha!=null){
-    heading=360-e.alpha; // fallback, may be relative rather than true north
-  }else{
-    return;
-  }
-  compassHeading=(heading+360)%360;
+    // Android: alpha is CCW rotation from initial/north
+    // For absolute event: 0=North, increases CCW → heading = (360-alpha)%360
+    heading=(360-e.alpha+360)%360;
+  }else{return;}
+
+  compassHeading=heading;
   applyLiveRotation();
 }
 async function enableLiveCompass(){
   const statusEl=document.getElementById('compassStatus');
   const btn=document.getElementById('compassEnableBtn');
   if(typeof DeviceOrientationEvent!=='undefined'&&typeof DeviceOrientationEvent.requestPermission==='function'){
-    // iOS 13+ requires an explicit user-gesture permission prompt
     try{
       const res=await DeviceOrientationEvent.requestPermission();
       if(res!=='granted'){
@@ -876,10 +922,11 @@ async function enableLiveCompass(){
     statusEl.textContent='⚠️ Your browser does not support a live compass';
     return;
   }
+  lastAbsolute=false;
   window.addEventListener('deviceorientationabsolute',handleOrientation,true);
   window.addEventListener('deviceorientation',handleOrientation,true);
   compassLive=true;
-  statusEl.textContent='🟢 Live — rotate your phone, the needle tracks Mecca';
+  statusEl.innerHTML='🟢 Live — heading: <span id="liveHeading">–</span>';
   statusEl.classList.add('live');
   btn.style.display='none';
 }
@@ -905,17 +952,84 @@ function toggleAzanKey(k){
 function updateAzanSummary(){T('azanSummary',Object.values(S.azan).filter(v=>v).length+'/'+Object.keys(S.azan).length);}
 
 // COUNTDOWN
+// ── AZAN AUDIO ──
+const AZAN_KEYS=['f','d','a','m','i'];
+let lastAzanFired='';
+let azanCtx=null;
+
+function getAudioCtx(){
+  if(!azanCtx||azanCtx.state==='closed'){
+    try{azanCtx=new(window.AudioContext||window.webkitAudioContext)();}catch(e){return null;}
+  }
+  return azanCtx;
+}
+
+// Play a short, calming rising tone pattern (simple azan alert — not a full azan recording)
+function playAzanBeep(){
+  const ctx=getAudioCtx();if(!ctx)return;
+  if(ctx.state==='suspended')ctx.resume();
+  // Three rising tones: short harmonic signal
+  const notes=[392,523,659,784,659,523,392]; // G4 C5 E5 G5 E5 C5 G4
+  let t=ctx.currentTime+0.05;
+  notes.forEach(freq=>{
+    const osc=ctx.createOscillator();
+    const gain=ctx.createGain();
+    osc.type='sine';osc.frequency.setValueAtTime(freq,t);
+    gain.gain.setValueAtTime(0,t);
+    gain.gain.linearRampToValueAtTime(0.35,t+0.08);
+    gain.gain.linearRampToValueAtTime(0,t+0.45);
+    osc.connect(gain);gain.connect(ctx.destination);
+    osc.start(t);osc.stop(t+0.5);
+    t+=0.38;
+  });
+}
+
+function requestNotifPermission(){
+  if('Notification' in window&&Notification.permission==='default'){
+    Notification.requestPermission();
+  }
+}
+
+function fireAzan(prayerName){
+  // Play sound
+  playAzanBeep();
+  // System notification if permitted
+  if('Notification' in window&&Notification.permission==='granted'){
+    new Notification('Nimêj — '+prayerName,{
+      body:'It is time for '+prayerName+' prayer. الله أكبر',
+      icon:'/nimej/icons/icon-192.png',
+      tag:'nimej-azan'
+    });
+  }
+}
+
 function updateCountdown(){
   const city=S.cities[S.activeCity];if(!city)return;
   const t=city.t;const tl=[t.f,t.d,t.a,t.m,t.i];
   const now=new Date(),nm=now.getHours()*60+now.getMinutes();
+  const ns=now.getSeconds();
   let nx=-1,ni=1;
   for(let i=0;i<tl.length;i++){const[h,m]=tl[i].split(':').map(Number);const tot=h*60+m;if(nm<tot){nx=tot;ni=i+1;break;}}
   if(nx===-1){const[h,m]=tl[0].split(':').map(Number);nx=h*60+m+1440;ni=1;}
-  let diff=(nx-nm)*60-now.getSeconds();
+  let diff=(nx-nm)*60-ns;
   const hh=Math.floor(diff/3600),mm=Math.floor((diff%3600)/60),ss=diff%60;
   T('countdown',`${String(hh).padStart(2,'0')}:${String(mm).padStart(2,'0')}:${String(ss).padStart(2,'0')}`);
   if(document.getElementById('screen-home').classList.contains('active'))T('nextName',getPName(ni));
+
+  // Check if any prayer time just started (within the first 5 seconds of the minute)
+  if(ns<=5){
+    tl.forEach((ptime,i)=>{
+      const[ph,pm]=ptime.split(':').map(Number);
+      if(ph===now.getHours()&&pm===now.getMinutes()){
+        const key=AZAN_KEYS[i];
+        const fireKey=ptime+'_'+now.toDateString();
+        if(S.azan[key]&&lastAzanFired!==fireKey){
+          lastAzanFired=fireKey;
+          fireAzan(getPName(i+1));
+        }
+      }
+    });
+  }
 }
 setInterval(updateCountdown,1000);
 
@@ -925,6 +1039,7 @@ function toggleDark(){
   document.getElementById('darkBtn').textContent=S.dark?'☀️':'🌙';
   document.getElementById('darkToggle').classList.toggle('on',S.dark);
   T('darkIcon',S.dark?'☀️':'🌙');T('darkLabel',S.dark?L().light:L().dark);
+  saveSettings();
 }
 
 // NAV
@@ -963,7 +1078,8 @@ function renderManageCities(){
 }
 function removeCity(i){
   S.cities.splice(i,1);if(S.activeCity>=S.cities.length)S.activeCity=S.cities.length-1;
-  renderManageCities();renderCityTabs();renderPrayers();updateCompass();T('cityBadge',cityLabel(S.cities[S.activeCity]?.n)||'–');
+  renderManageCities();renderCityTabs();renderPrayers();updateCompass();
+  T('cityBadge',cityLabel(S.cities[S.activeCity]?.n)||'–');saveSettings();
 }
 
 // MODAL
@@ -981,9 +1097,8 @@ function openModal(type){
 function selModal(v){
   if(curModal==='language')S.langId=v;
   else if(curModal==='institution')S.inst=v;
-  closeModal();renderAll();
+  closeModal();renderAll();saveSettings();
   if(curModal==='institution')refreshActiveCityTimes();
-  // Stay on whichever screen we were on (e.g. Settings) instead of navigating away
   if(S.curScreen==='manageCities')renderManageCities();
   if(S.curScreen==='azan')renderAzan();
 }
@@ -1009,9 +1124,8 @@ function cpCity(ci,i){
   const city=COUNTRIES[ci].cities[i];
   if(!S.cities.some(c=>c.n===city.n))S.cities.push({...city});
   S.activeCity=S.cities.findIndex(c=>c.n===city.n);
-  closeCityPicker();renderAll();
+  closeCityPicker();renderAll();saveSettings();
   refreshActiveCityTimes();
-  // Stay on whichever screen we were on (e.g. Manage Cities) instead of navigating away
   if(S.curScreen==='manageCities')renderManageCities();
 }
 
@@ -1020,6 +1134,23 @@ function cpCity(ci,i){
 document.getElementById('backBtn').style.display='none';
 document.getElementById('homeGreg').textContent=new Date().toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'});
 updateCountdown();
+
+// Restore saved settings and skip onboarding if already completed
+if(loadSettings()){
+  S.nameIdx=Math.floor(Math.random()*N99.length);
+  if(S.dark)document.getElementById('phone').classList.add('dark');
+  document.getElementById('bnav').style.display='flex';
+  document.getElementById('hdrRight').style.display='flex';
+  document.getElementById('screen-onboard').classList.remove('active');
+  renderAll();showScreen('home');
+  refreshActiveCityTimes();
+  requestNotifPermission();
+}
+// Unlock AudioContext on first user tap (browser autoplay policy)
+document.addEventListener('click',()=>{
+  const ctx=getAudioCtx();
+  if(ctx&&ctx.state==='suspended')ctx.resume();
+},{once:true});
 
 // Register service worker for offline use (PWA)
 if('serviceWorker' in navigator){
